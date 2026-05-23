@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"E:\\\\SATHVIK\\\\study\\\\Projects\")",
+      "Read(//e/SATHVIK/study/Projects/**)"
+    ]
+  }
+}
