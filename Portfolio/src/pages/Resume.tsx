@@ -94,7 +94,7 @@ export default function Resume() {
                     <p className="text-white/35 text-[10px] uppercase tracking-widest mb-2 font-medium">{cat}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {items.map(s => (
-                        <span key={s.name} className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/8 text-white/65">{s.name}</span>
+                        <span key={s} className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/8 text-white/65">{s}</span>
                       ))}
                     </div>
                   </div>
@@ -205,7 +205,7 @@ export default function Resume() {
               {Object.entries(skills).map(([cat, items]) => (
                 <p key={cat} className="skill-row">
                   <span className="skill-label">{cat}: </span>
-                  <span>{items.map(s => s.name).join(' · ')}</span>
+                  <span>{items.join(' · ')}</span>
                 </p>
               ))}
 
