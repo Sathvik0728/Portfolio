@@ -49,7 +49,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" ref={ref} className="py-14 md:py-24 px-6">
+    <section id="contact" ref={ref} className="py-14 md:py-20 px-6">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -191,7 +191,7 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <footer className="mt-10 md:mt-16 pt-8 border-t border-white/5">
+      <footer className="mt-8 pt-6 border-t border-white/5">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="font-heading font-bold text-white text-sm">
