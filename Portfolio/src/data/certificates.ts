@@ -6,7 +6,7 @@ export interface Certificate {
   featured?: boolean
 }
 
-export const CERT_BASE = 'https://github.com/Sathvik0728/Certificates-/blob/main'
+export const CERT_BASE = 'https://raw.githubusercontent.com/Sathvik0728/Certificates-/main'
 
 export const certificates: Certificate[] = [
   // ML & AI

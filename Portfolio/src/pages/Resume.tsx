@@ -196,7 +196,7 @@ export default function Resume() {
 
               <p className="section-heading">Summary</p>
               <p className="summary">
-                Final-year B.Tech student in Computer Science (AI &amp; ML) with hands-on experience building intelligent systems across computer vision, NLP, and web AI. Developed 17+ projects spanning real-time gesture control, deep learning classifiers, and deployed ML web applications. Passionate about turning complex AI research into interactive, real-world products.
+                Final-year B.Tech student in Computer Science (AI &amp; ML) with hands-on experience building intelligent systems across computer vision, NLP, and web AI. Developed 22+ projects spanning real-time gesture control, deep learning classifiers, and deployed ML web applications. Passionate about turning complex AI research into interactive, real-world products.
               </p>
 
               <p className="section-heading">Education</p>

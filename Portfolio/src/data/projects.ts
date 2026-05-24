@@ -24,6 +24,16 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 6,
+    title: 'Subway Surfers Pose Control',
+    description: 'Control Subway Surfers with your body — jump, crouch, and dodge using pose estimation.',
+    longDesc: 'Maps real-time body pose landmarks to keyboard inputs, enabling touchless gameplay. Detects jumps via hip elevation, crouching via body height, and side movement via shoulder position.',
+    category: 'Computer Vision',
+    tags: ['Python', 'MediaPipe', 'PyAutoGUI', 'OpenCV'],
+    github: 'https://github.com/Sathvik0728/Subway-Surfers-Pose-Control',
+    featured: true,
+  },
+  {
     id: 2,
     title: 'Face Emotion Recognition',
     description: 'Real-time 7-emotion detection from webcam using a CNN trained on the FER2013 dataset.',
@@ -63,15 +73,6 @@ export const projects: Project[] = [
     tags: ['Flask', 'scikit-learn', 'NLP', 'TF-IDF'],
     github: 'https://github.com/Sathvik0728/SMS-Spam-Detector',
     live: 'https://sms-spam-detector-v0s7.onrender.com',
-    featured: true,
-  },
-  {
-    id: 6,
-    title: 'Subway Surfers Pose Control',
-    description: 'Control Subway Surfers with your body — jump, crouch, and dodge using pose estimation.',
-    longDesc: 'Maps real-time body pose landmarks to keyboard inputs, enabling touchless gameplay. Detects jumps via hip elevation, crouching via body height, and side movement via shoulder position.',
-    category: 'Computer Vision',
-    tags: ['Python', 'MediaPipe', 'PyAutoGUI', 'OpenCV'],
     featured: true,
   },
   {

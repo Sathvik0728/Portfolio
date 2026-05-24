@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import RotatingText from './RotatingText'
 
 const stats = [
-  { icon: Boxes,     value: '17+', label: 'Projects Built' },
+  { icon: Boxes,     value: '22+', label: 'Projects Built' },
   { icon: Rocket,    value: '4',   label: 'Live Deployments' },
   { icon: BadgeCheck,value: '20+', label: 'Certificates' },
 ]
