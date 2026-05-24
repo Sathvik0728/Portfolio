@@ -33,7 +33,7 @@ export default function Hero() {
               color: { value: '#00D4FF' },
               links: { color: '#00D4FF', distance: 150, enable: true, opacity: 0.15, width: 1 },
               move: { enable: true, speed: 0.6, outModes: { default: 'bounce' } },
-              number: { density: { enable: true, area: 900 }, value: 60 },
+              number: { density: { enable: true }, value: 60 },
               opacity: { value: 0.25 },
               size: { value: { min: 1, max: 2 } },
             },
