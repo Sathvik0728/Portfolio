@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { Award, ExternalLink } from 'lucide-react'
-import { certificates, certCategories, CERT_BASE } from '../data/certificates'
+import { Award } from 'lucide-react'
+import { certificates, certCategories, type Certificate } from '../data/certificates'
+import CertificateModal from './CertificateModal'
 
 const categoryColors: Record<string, string> = {
   'ML & AI': 'text-blue-400 bg-blue-500/10 border-blue-500/20',
@@ -16,6 +17,7 @@ export default function Certificates() {
   const [ref, inView] = useInView()
   const [active, setActive] = useState<string>('All')
   const [showAll, setShowAll] = useState(false)
+  const [selected, setSelected] = useState<Certificate | null>(null)
 
   const byCat = active === 'All' ? certificates : certificates.filter(c => c.category === active)
   const displayed = showAll ? byCat : byCat.filter(c => c.featured)
@@ -41,6 +43,7 @@ export default function Certificates() {
           {['All', ...certCategories].map(cat => (
             <button
               key={cat}
+              type="button"
               onClick={() => { setActive(cat); setShowAll(false) }}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
                 active === cat
@@ -60,24 +63,16 @@ export default function Certificates() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="glass-card p-5 flex items-start gap-4 hover:border-white/20 transition-all duration-300 group"
+              onClick={() => cert.filename && setSelected(cert)}
+              className={`glass-card p-5 flex items-start gap-4 hover:border-cyan-500/30 hover:bg-white/[0.07] transition-all duration-300 group ${cert.filename ? 'cursor-pointer' : ''}`}
             >
               <div className={`w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0 ${categoryColors[cert.category]}`}>
                 <Award size={16} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-heading font-semibold text-white text-sm group-hover:text-cyan-400 transition-colors leading-snug mb-1">
-                    {cert.title}
-                  </h3>
-                  {cert.filename && (
-                    <a href={`${CERT_BASE}/${encodeURIComponent(cert.filename)}`} target="_blank" rel="noopener noreferrer"
-                      aria-label="View certificate"
-                      className="text-white/30 hover:text-cyan-400 transition-colors flex-shrink-0 mt-0.5">
-                      <ExternalLink size={13} />
-                    </a>
-                  )}
-                </div>
+                <h3 className="font-heading font-semibold text-white text-sm group-hover:text-cyan-400 transition-colors leading-snug mb-1">
+                  {cert.title}
+                </h3>
                 <p className="text-white/40 text-xs">{cert.issuer}</p>
                 <span className={`inline-block mt-2 text-xs px-2 py-0.5 rounded-full border ${categoryColors[cert.category]}`}>
                   {cert.category}
@@ -102,6 +97,8 @@ export default function Certificates() {
           </div>
         )}
       </div>
+
+      <CertificateModal cert={selected} onClose={() => setSelected(null)} />
     </section>
   )
 }
