@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { Github, Linkedin, Mail, FileText, Copy, Check, Send, Loader, ArrowUp } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText, Copy, Check, Send, Loader } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const EMAIL = 'bandasathvik0@gmail.com'
@@ -49,7 +49,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" ref={ref} className="py-14 md:py-20 px-6">
+    <section id="contact" ref={ref} className="pt-14 md:pt-20 pb-8 px-6">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -219,14 +219,6 @@ export default function Contact() {
             <a href={`mailto:${EMAIL}`} aria-label="Email" className="text-white/30 hover:text-cyan-400 transition-colors">
               <Mail size={16} />
             </a>
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              aria-label="Back to top"
-              className="text-white/30 hover:text-cyan-400 transition-colors ml-2"
-            >
-              <ArrowUp size={16} />
-            </button>
           </div>
         </div>
         <p className="text-center text-white/15 text-xs mt-6">
