@@ -22,7 +22,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center circuit-bg overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center circuit-bg overflow-hidden py-24 md:py-0">
       {ready && (
         <Particles
           id="tsparticles"
@@ -155,7 +155,7 @@ export default function Hero() {
         href="#about"
         aria-label="Scroll to About section"
         tabIndex={0}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 hover:text-cyan-400 transition-colors animate-bounce focus:outline-none focus:text-cyan-400"
+        className="absolute bottom-8 inset-x-0 mx-auto w-fit text-white/30 hover:text-cyan-400 transition-colors animate-bounce focus:outline-none focus:text-cyan-400"
       >
         <ArrowDown size={22} />
       </a>
