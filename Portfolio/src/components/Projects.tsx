@@ -14,8 +14,21 @@ export default function Projects() {
   const [selected, setSelected] = useState<Project | null>(null)
 
   const featured = projects.filter(p => p.featured)
+  const interleaved = (() => {
+    const nonFeatured = projects.filter(p => !p.featured)
+    const order: Category[] = ['Deep Learning', 'Web & NLP', 'Games & Utilities', 'Computer Vision']
+    const groups = order.map(c => nonFeatured.filter(p => p.category === c))
+    const result: typeof projects = []
+    let i = 0
+    while (result.length < nonFeatured.length) {
+      groups.forEach(g => { if (g[i]) result.push(g[i]) })
+      i++
+    }
+    return [...result, ...projects.filter(p => p.featured)]
+  })()
+
   const filtered = active === 'All'
-    ? [...projects.filter(p => !p.featured), ...projects.filter(p => p.featured)]
+    ? interleaved
     : projects.filter(p => p.category === active)
   const displayed = showAll ? filtered : filtered.slice(0, PAGE_SIZE)
   const hiddenCount = Math.max(0, filtered.length - PAGE_SIZE)
