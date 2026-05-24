@@ -192,15 +192,6 @@ export const projects: Project[] = [
     featured: false,
   },
   {
-    id: 19,
-    title: 'Sketch Converter',
-    description: 'Converts images to pencil sketches using Pillow\'s gaussian blur and dodge-blend algorithm.',
-    longDesc: 'Python utility using PIL for grayscale conversion, inversion, gaussian blur, and dodge blending to produce high-quality pencil sketch output with contrast enhancement.',
-    category: 'Games & Utilities',
-    tags: ['Python', 'Pillow', 'NumPy'],
-    featured: false,
-  },
-  {
     id: 20,
     title: 'QR Code Generator',
     description: 'Instantly generates QR codes from any text or URL and saves them as PNG.',
