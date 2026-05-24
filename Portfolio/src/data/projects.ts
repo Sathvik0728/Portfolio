@@ -122,6 +122,7 @@ export const projects: Project[] = [
     longDesc: 'Hand gesture-based calculator with real-time equation display on a rendered button grid. Pinch gesture detects button press, enabling touch-free arithmetic.',
     category: 'Computer Vision',
     tags: ['Python', 'OpenCV', 'MediaPipe', 'NumPy'],
+    github: 'https://github.com/Sathvik0728/Gesture-Calculator',
     featured: false,
   },
   {
@@ -141,6 +142,7 @@ export const projects: Project[] = [
     longDesc: 'Uses pre-trained COCO models via TensorFlow to detect objects in real-time. Dynamically parses label maps, overlays bounding boxes, and displays confidence scores.',
     category: 'Deep Learning',
     tags: ['Python', 'TensorFlow', 'OpenCV', 'COCO'],
+    github: 'https://github.com/Sathvik0728/Object-Detection-Using-Tensorflow',
     featured: false,
   },
   {
@@ -150,6 +152,7 @@ export const projects: Project[] = [
     longDesc: 'Flask web app trained on large historical datasets (city_day, station_hour) to predict PM2.5, PM10, NO2, SO2, CO, O3, and AQI category for any Indian city by name.',
     category: 'Web & NLP',
     tags: ['Flask', 'scikit-learn', 'RandomForest', 'pandas'],
+    github: 'https://github.com/Sathvik0728/Air_pollution',
     featured: false,
   },
   {
@@ -169,6 +172,7 @@ export const projects: Project[] = [
     longDesc: 'Hands-free desktop assistant with TKinter GUI and animated interface. Responds to voice commands to open YouTube, Google, Gmail, perform Wikipedia searches, and more.',
     category: 'Web & NLP',
     tags: ['Python', 'pyttsx3', 'SpeechRecognition', 'TKinter'],
+    github: 'https://github.com/Sathvik0728/Jarvis-AI',
     featured: false,
   },
   {
@@ -208,6 +212,7 @@ export const projects: Project[] = [
     longDesc: 'Desktop music player built with TKinter and Pygame. Supports loading and playing audio files with intuitive playback controls.',
     category: 'Games & Utilities',
     tags: ['Python', 'Pygame', 'TKinter'],
+    github: 'https://github.com/Sathvik0728/Music-Player',
     featured: false,
   },
   {
@@ -217,6 +222,7 @@ export const projects: Project[] = [
     longDesc: 'Classic word-guessing game with progressive hangman ASCII art, letter-by-letter guessing, win/loss detection, and a restart button. Built in vanilla JavaScript.',
     category: 'Games & Utilities',
     tags: ['JavaScript', 'HTML5', 'CSS3'],
+    github: 'https://github.com/Sathvik0728/Hangman',
     featured: false,
   },
   {
