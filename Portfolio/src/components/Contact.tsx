@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail, FileText, Copy, Check, Send, Loader } from 'luc
 import { Link } from 'react-router-dom'
 
 const EMAIL = 'bandasathvik0@gmail.com'
-const FORMSPREE_ID = 'xwpqkgde'
+const FORMSPREE_ID = 'mlgvlvay'
 
 const links = [
   { icon: Mail,     label: 'Email',    value: EMAIL,                   href: `mailto:${EMAIL}` },
