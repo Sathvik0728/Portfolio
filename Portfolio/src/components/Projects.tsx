@@ -15,8 +15,8 @@ export default function Projects() {
 
   const featured = projects.filter(p => p.featured)
   const filtered = active === 'All'
-    ? projects.filter(p => !p.featured)
-    : projects.filter(p => p.category === active && !p.featured)
+    ? [...projects.filter(p => !p.featured), ...projects.filter(p => p.featured)]
+    : projects.filter(p => p.category === active)
   const displayed = showAll ? filtered : filtered.slice(0, PAGE_SIZE)
   const hiddenCount = Math.max(0, filtered.length - PAGE_SIZE)
 
