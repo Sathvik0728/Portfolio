@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { projects, categories, type Category } from '../data/projects'
+import { projects, categories, type Category, type Project } from '../data/projects'
 import ProjectCard from './ProjectCard'
+import ProjectModal from './ProjectModal'
 
 const PAGE_SIZE = 6
 
@@ -10,6 +11,7 @@ export default function Projects() {
   const [ref, inView] = useInView()
   const [active, setActive] = useState<Category>('All')
   const [showAll, setShowAll] = useState(false)
+  const [selected, setSelected] = useState<Project | null>(null)
 
   const featured = projects.filter(p => p.featured)
   const filtered = active === 'All'
@@ -34,7 +36,6 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Featured — 3 on mobile, all 6 on md+ */}
         <motion.h3
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -46,12 +47,11 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 md:mb-14">
           {featured.map((p, i) => (
             <div key={p.id} className={i >= 3 ? 'hidden md:block' : ''}>
-              <ProjectCard project={p} index={i} inView={inView} featured />
+              <ProjectCard project={p} index={i} inView={inView} featured onClick={() => setSelected(p)} />
             </div>
           ))}
         </div>
 
-        {/* All Projects */}
         <motion.h3
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -80,7 +80,7 @@ export default function Projects() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {displayed.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} inView={inView} />
+            <ProjectCard key={p.id} project={p} index={i} inView={inView} onClick={() => setSelected(p)} />
           ))}
         </div>
 
@@ -92,6 +92,8 @@ export default function Projects() {
           </div>
         )}
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   )
 }

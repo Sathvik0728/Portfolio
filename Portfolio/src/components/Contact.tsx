@@ -1,31 +1,27 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { Github, Linkedin, Mail, FileText } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText, Copy, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+const EMAIL = 'bandasathvik0@gmail.com'
+
 const links = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'bandasathvik0@gmail.com',
-    href: 'mailto:bandasathvik0@gmail.com',
-  },
-  {
-    icon: Github,
-    label: 'GitHub',
-    value: 'github.com/Sathvik0728',
-    href: 'https://github.com/Sathvik0728',
-  },
-  {
-    icon: Linkedin,
-    label: 'LinkedIn',
-    value: 'banda-sathvik',
-    href: 'https://www.linkedin.com/in/banda-sathvik/',
-  },
+  { icon: Mail,     label: 'Email',    value: EMAIL,                  href: `mailto:${EMAIL}` },
+  { icon: Github,   label: 'GitHub',   value: 'github.com/Sathvik0728', href: 'https://github.com/Sathvik0728' },
+  { icon: Linkedin, label: 'LinkedIn', value: 'banda-sathvik',         href: 'https://www.linkedin.com/in/banda-sathvik/' },
 ]
 
 export default function Contact() {
   const [ref, inView] = useInView()
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = (e: React.MouseEvent) => {
+    e.preventDefault()
+    navigator.clipboard.writeText(EMAIL)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <section id="contact" ref={ref} className="py-14 md:py-24 px-6">
@@ -55,7 +51,7 @@ export default function Contact() {
               href={href}
               target={href.startsWith('mailto') ? undefined : '_blank'}
               rel="noopener noreferrer"
-              className="glass-card p-5 flex flex-col items-center gap-3 hover:border-cyan-500/30 hover:bg-white/[0.07] transition-all duration-300 group"
+              className="glass-card p-5 flex flex-col items-center gap-3 hover:border-cyan-500/30 hover:bg-white/[0.07] transition-all duration-300 group relative"
             >
               <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
                 <Icon size={18} className="text-cyan-400" />
@@ -64,6 +60,16 @@ export default function Contact() {
                 <p className="text-white/40 text-xs mb-1">{label}</p>
                 <p className="text-white text-sm font-medium group-hover:text-cyan-400 transition-colors">{value}</p>
               </div>
+              {label === 'Email' && (
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  aria-label="Copy email address"
+                  className="absolute top-3 right-3 text-white/20 hover:text-cyan-400 transition-colors"
+                >
+                  {copied ? <Check size={13} className="text-cyan-400" /> : <Copy size={13} />}
+                </button>
+              )}
             </a>
           ))}
         </motion.div>

@@ -21,9 +21,10 @@ interface Props {
   index: number
   inView: boolean
   featured?: boolean
+  onClick?: () => void
 }
 
-export default function ProjectCard({ project, index, inView, featured }: Props) {
+export default function ProjectCard({ project, index, inView, featured, onClick }: Props) {
   const gradientClass = categoryColors[project.category] ?? 'from-white/5 to-white/5 border-white/10'
   const dotClass = categoryDot[project.category] ?? 'bg-white/40'
 
@@ -32,7 +33,8 @@ export default function ProjectCard({ project, index, inView, featured }: Props)
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className={`glass-card flex flex-col hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(0,212,255,0.06)] transition-all duration-300 group overflow-hidden ${featured ? 'h-full' : ''}`}
+      onClick={onClick}
+      className={`glass-card flex flex-col hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(0,212,255,0.06)] transition-all duration-300 group overflow-hidden ${featured ? 'h-full' : ''} ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Category colour banner */}
       <div className={`h-1 w-full bg-gradient-to-r ${gradientClass}`} />

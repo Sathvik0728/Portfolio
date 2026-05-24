@@ -32,51 +32,69 @@ export default function Resume() {
 
           {/* === WEB VIEW === */}
           <div className="print:hidden">
-            <div className="glass-card p-8 mb-6 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5" />
-              <div className="relative">
-                <h1 className="font-heading text-4xl font-bold text-white mb-1">Sathvik Banda</h1>
-                <p className="text-cyan-400 text-lg font-medium mb-4">AI &amp; ML Engineer</p>
-                <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-white/50">
-                  <a href="mailto:bandasathvik0@gmail.com" aria-label="Email" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
-                    <Mail size={14} /> bandasathvik0@gmail.com
-                  </a>
-                  <a href="https://github.com/Sathvik0728" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
-                    <Github size={14} /> Sathvik0728
-                  </a>
-                  <a href="https://www.linkedin.com/in/banda-sathvik/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
-                    <Linkedin size={14} /> banda-sathvik
-                  </a>
+            {/* Hero header */}
+            <div className="glass-card mb-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/8 to-blue-600/5" />
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500/60 via-blue-500/40 to-transparent" />
+              <div className="relative p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                {/* Initials avatar */}
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center shrink-0 shadow-[0_0_30px_rgba(0,212,255,0.12)]">
+                  <span className="font-heading font-bold text-2xl text-cyan-400">SB</span>
+                </div>
+                <div className="text-center sm:text-left flex-1">
+                  <h1 className="font-heading text-3xl md:text-4xl font-bold text-white mb-1">Sathvik Banda</h1>
+                  <p className="text-cyan-400 font-medium mb-1">AI &amp; ML Engineer</p>
+                  <p className="text-white/40 text-sm mb-4 max-w-xl">
+                    Final-year B.Tech student building intelligent systems — from real-time gesture control to deployed ML web apps.
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-white/50">
+                    <a href="mailto:bandasathvik0@gmail.com" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
+                      <Mail size={13} /> bandasathvik0@gmail.com
+                    </a>
+                    <a href="https://github.com/Sathvik0728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
+                      <Github size={13} /> Sathvik0728
+                    </a>
+                    <a href="https://www.linkedin.com/in/banda-sathvik/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
+                      <Linkedin size={13} /> banda-sathvik
+                    </a>
+                  </div>
+                </div>
+                {/* Open to work badge */}
+                <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  Open to work
                 </div>
               </div>
             </div>
 
-            <div className="glass-card p-6 mb-6">
-              <h2 className="font-heading text-lg font-semibold text-cyan-400 mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-cyan-400 rounded-full inline-block" />
+            {/* Education */}
+            <div className="glass-card p-6 mb-5">
+              <h2 className="font-heading text-base font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-cyan-400 rounded-full" />
                 Education
               </h2>
-              <div className="flex justify-between items-start">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                 <div>
-                  <h3 className="text-white font-semibold">B.Tech — Computer Science & Engineering (AI & ML)</h3>
-                  <p className="text-white/50 text-sm mt-1">Malla Reddy College of Engineering And Technology</p>
+                  <h3 className="text-white font-semibold text-sm">B.Tech — Computer Science &amp; Engineering (AI &amp; ML)</h3>
+                  <p className="text-white/40 text-sm mt-0.5">Malla Reddy College of Engineering And Technology</p>
                 </div>
-                <span className="tag shrink-0">2023 – 2027</span>
+                <span className="tag shrink-0 self-start">2023 – 2027</span>
               </div>
             </div>
 
-            <div className="glass-card p-6 mb-6">
-              <h2 className="font-heading text-lg font-semibold text-cyan-400 mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-cyan-400 rounded-full inline-block" />
+            {/* Skills */}
+            <div className="glass-card p-6 mb-5">
+              <h2 className="font-heading text-base font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-cyan-400 rounded-full" />
                 Technical Skills
               </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-5">
                 {Object.entries(skills).map(([cat, items]) => (
                   <div key={cat}>
-                    <p className="text-white/40 text-xs uppercase tracking-widest mb-2">{cat}</p>
+                    <p className="text-white/35 text-[10px] uppercase tracking-widest mb-2 font-medium">{cat}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {items.map(s => (
-                        <span key={s} className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-white/70">{s}</span>
+                        <span key={s.name} className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/8 text-white/65">{s.name}</span>
                       ))}
                     </div>
                   </div>
@@ -84,33 +102,42 @@ export default function Resume() {
               </div>
             </div>
 
-            <div className="glass-card p-6 mb-6">
-              <h2 className="font-heading text-lg font-semibold text-cyan-400 mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-cyan-400 rounded-full inline-block" />
+            {/* Projects */}
+            <div className="glass-card p-6 mb-5">
+              <h2 className="font-heading text-base font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-cyan-400 rounded-full" />
                 Key Projects
               </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-3">
                 {topProjects.map(p => (
-                  <div key={p.title} className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
-                    <h3 className="font-heading font-semibold text-white text-sm mb-1">{p.title}</h3>
-                    <p className="text-white/50 text-xs leading-relaxed mb-2">{p.description}</p>
+                  <div key={p.title} className="p-4 rounded-xl bg-white/[0.025] border border-white/[0.07] hover:border-cyan-500/20 hover:bg-white/[0.04] transition-all duration-200 group">
+                    <div className="flex items-start justify-between gap-2 mb-1.5">
+                      <h3 className="font-heading font-semibold text-white text-sm group-hover:text-cyan-400 transition-colors leading-snug">{p.title}</h3>
+                      {p.github && (
+                        <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label={`${p.title} GitHub repository`} className="text-white/20 hover:text-white transition-colors shrink-0 mt-0.5">
+                          <Github size={13} />
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-white/45 text-xs leading-relaxed mb-2.5">{p.description}</p>
                     <div className="flex flex-wrap gap-1">
-                      {p.tags.map(t => <span key={t} className="tag text-xs">{t}</span>)}
+                      {p.tags.slice(0, 4).map(t => <span key={t} className="tag text-[10px] py-0.5">{t}</span>)}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Certifications */}
             <div className="glass-card p-6">
-              <h2 className="font-heading text-lg font-semibold text-cyan-400 mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-cyan-400 rounded-full inline-block" />
+              <h2 className="font-heading text-base font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-cyan-400 rounded-full" />
                 Certifications &amp; Achievements
               </h2>
-              <ul className="grid sm:grid-cols-2 gap-2">
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
                 {certs.map(c => (
-                  <li key={c} className="flex items-start gap-2 text-sm text-white/60">
-                    <span className="text-cyan-400 mt-1 text-xs">▸</span> {c}
+                  <li key={c} className="flex items-start gap-2 text-sm text-white/55">
+                    <span className="text-cyan-400/70 mt-0.5 text-xs shrink-0">▸</span> {c}
                   </li>
                 ))}
               </ul>
@@ -178,7 +205,7 @@ export default function Resume() {
               {Object.entries(skills).map(([cat, items]) => (
                 <p key={cat} className="skill-row">
                   <span className="skill-label">{cat}: </span>
-                  <span>{items.join(' · ')}</span>
+                  <span>{items.map(s => s.name).join(' · ')}</span>
                 </p>
               ))}
 

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import { Code2, BrainCircuit, Globe, Wrench } from 'lucide-react'
-import { skills } from '../data/skills'
+import { skills, type Proficiency } from '../data/skills'
 import TechTicker from './TechTicker'
 
 const categoryMeta: Record<string, { icon: React.ElementType; gradient: string; iconColor: string }> = {
@@ -9,6 +9,18 @@ const categoryMeta: Record<string, { icon: React.ElementType; gradient: string; 
   'AI / ML':          { icon: BrainCircuit,  gradient: 'from-purple-500/15 to-pink-500/5',  iconColor: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
   'Web':              { icon: Globe,          gradient: 'from-green-500/15 to-teal-500/5',   iconColor: 'text-green-400 bg-green-500/10 border-green-500/20' },
   'Tools & Platforms':{ icon: Wrench,         gradient: 'from-orange-500/15 to-yellow-500/5',iconColor: 'text-orange-400 bg-orange-500/10 border-orange-500/20' },
+}
+
+const levelDot: Record<Proficiency, string> = {
+  expert:     'bg-cyan-400',
+  proficient: 'bg-blue-400/70',
+  familiar:   'bg-white/25',
+}
+
+const levelTitle: Record<Proficiency, string> = {
+  expert:     'Expert',
+  proficient: 'Proficient',
+  familiar:   'Familiar',
 }
 
 export default function Skills() {
@@ -30,6 +42,21 @@ export default function Skills() {
           </p>
         </motion.div>
 
+        {/* Legend */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-5 justify-center mb-8"
+        >
+          {(['expert', 'proficient', 'familiar'] as Proficiency[]).map(level => (
+            <span key={level} className="flex items-center gap-1.5 text-xs text-white/40">
+              <span className={`w-1.5 h-1.5 rounded-full ${levelDot[level]}`} />
+              {levelTitle[level]}
+            </span>
+          ))}
+        </motion.div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
           {Object.entries(skills).map(([category, items], ci) => {
             const meta = categoryMeta[category]
@@ -40,9 +67,8 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: ci * 0.1 }}
-                className={`glass-card overflow-hidden hover:border-white/20 transition-all duration-300`}
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300"
               >
-                {/* Gradient header strip */}
                 <div className={`p-5 pb-3 bg-gradient-to-br ${meta?.gradient ?? ''}`}>
                   <div className={`w-9 h-9 rounded-lg border flex items-center justify-center mb-3 ${meta?.iconColor ?? ''}`}>
                     <Icon size={17} />
@@ -53,13 +79,15 @@ export default function Skills() {
                 <div className="px-5 pb-5 pt-3 flex flex-wrap gap-2">
                   {items.map((skill, si) => (
                     <motion.span
-                      key={skill}
+                      key={skill.name}
                       initial={{ opacity: 0, scale: 0.85 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.25, delay: ci * 0.1 + si * 0.04 }}
-                      className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/8 text-white/60 cursor-default select-none"
+                      title={levelTitle[skill.level]}
+                      className="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/8 text-white/60 cursor-default select-none"
                     >
-                      {skill}
+                      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${levelDot[skill.level]}`} />
+                      {skill.name}
                     </motion.span>
                   ))}
                 </div>
@@ -68,7 +96,6 @@ export default function Skills() {
           })}
         </div>
 
-        {/* Scrolling tech ticker */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}

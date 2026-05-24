@@ -13,7 +13,7 @@ const focuses = [
 const stats = [
   { value: 17, suffix: '+', label: 'Projects' },
   { value: 4,  suffix: '',  label: 'Live Apps' },
-  { value: 21, suffix: '+', label: 'Certificates' },
+  { value: 20, suffix: '+', label: 'Certificates' },
 ]
 
 function Counter({ value, suffix, active }: { value: number; suffix: string; active: boolean }) {

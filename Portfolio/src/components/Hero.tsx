@@ -9,7 +9,7 @@ import RotatingText from './RotatingText'
 const stats = [
   { icon: Boxes,     value: '17+', label: 'Projects Built' },
   { icon: Rocket,    value: '4',   label: 'Live Deployments' },
-  { icon: BadgeCheck,value: '21+', label: 'Certificates' },
+  { icon: BadgeCheck,value: '20+', label: 'Certificates' },
 ]
 
 export default function Hero() {
@@ -48,6 +48,16 @@ export default function Hero() {
       <div className="absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-blue-500/5 blur-[80px] pointer-events-none" />
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto w-full flex flex-col items-center justify-evenly flex-1 pt-24 pb-20 md:flex-none md:block md:pt-0 md:pb-0">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 mb-3 md:mb-4"
+        >
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+          <span className="text-green-400 text-xs font-medium">Available for opportunities</span>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

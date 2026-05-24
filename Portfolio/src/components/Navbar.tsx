@@ -4,21 +4,33 @@ import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'About',        href: '#about' },
+  { label: 'Skills',       href: '#skills' },
+  { label: 'Projects',     href: '#projects' },
   { label: 'Certificates', href: '#certificates' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact',      href: '#contact' },
 ]
 
+const sectionIds = navLinks.map(l => l.href.slice(1))
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled]   = useState(false)
+  const [open, setOpen]           = useState(false)
+  const [active, setActive]       = useState('')
   const location = useLocation()
   const isResume = location.pathname === '/resume'
 
   const onScroll = useCallback(() => {
-    requestAnimationFrame(() => setScrolled(window.scrollY > 50))
+    requestAnimationFrame(() => {
+      setScrolled(window.scrollY > 50)
+      // Find which section is currently in view
+      let current = ''
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= 120) current = id
+      }
+      setActive(current)
+    })
   }, [])
 
   useEffect(() => {
@@ -70,13 +82,26 @@ export default function Navbar() {
         {!isResume && (
           <>
             <ul className="hidden md:flex items-center gap-8">
-              {navLinks.map(link => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-white/60 hover:text-white text-sm font-medium transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {navLinks.map(link => {
+                const id = link.href.slice(1)
+                const isActive = active === id
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className={`text-sm font-medium transition-colors relative ${isActive ? 'text-cyan-400' : 'text-white/60 hover:text-white'}`}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyan-400 rounded-full"
+                        />
+                      )}
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
 
             <Link to="/resume" className="hidden md:block btn-outline text-sm py-2 px-4">
@@ -103,13 +128,21 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-[#0A0F1E]/95 backdrop-blur-md border-b border-white/5 px-6 pb-6 pt-2">
           <ul className="flex flex-col gap-4">
-            {navLinks.map(link => (
-              <li key={link.href}>
-                <a href={link.href} className="text-white/70 hover:text-white text-sm" onClick={() => setOpen(false)}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map(link => {
+              const id = link.href.slice(1)
+              const isActive = active === id
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`text-sm transition-colors ${isActive ? 'text-cyan-400 font-medium' : 'text-white/70 hover:text-white'}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            })}
             <li>
               <Link
                 to="/resume"
