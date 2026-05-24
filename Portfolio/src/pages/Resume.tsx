@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Printer, ArrowLeft, Github, Linkedin, Mail } from 'lucide-react'
 import Navbar from '../components/Navbar'
@@ -10,6 +11,12 @@ const topProjects = projects.filter(p => p.featured)
 const certs = certificates.filter(c => c.featured).map(c => c.title)
 
 export default function Resume() {
+  useEffect(() => {
+    const prev = document.title
+    document.title = 'Resume — Sathvik Banda'
+    return () => { document.title = prev }
+  }, [])
+
   return (
     <>
       <Navbar />

@@ -85,13 +85,13 @@ export default function About() {
             </p>
 
             <p className="text-white/70 text-base leading-relaxed mb-5">
-              I'm <span className="text-white font-semibold">Sathvik Banda</span>, a final-year B.Tech student in Computer Science with a specialization in Artificial Intelligence & Machine Learning.
+              I'm <span className="text-white font-semibold">Sathvik Banda</span>, a final-year B.Tech student in Computer Science specializing in AI & Machine Learning.
             </p>
             <p className="text-white/55 leading-relaxed mb-5">
-              I build intelligent systems that bridge the gap between research and real-world use — from gesture-controlled interfaces and real-time computer vision apps to NLP pipelines and deployed web applications.
+              I build intelligent systems that go beyond notebooks — gesture-controlled interfaces, real-time computer vision pipelines, NLP tools, and ML-powered web apps that people can actually use.
             </p>
             <p className="text-white/55 leading-relaxed">
-              Passionate about turning complex AI into products people can actually see and interact with — spanning computer vision, deep learning, and web AI.
+              I care about the full journey: from model to product, from idea to deployment.
             </p>
 
             <div className="flex flex-wrap gap-2 mt-7">

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { Github, Linkedin, Mail, FileText, Copy, Check, Send, Loader } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText, Copy, Check, Send, Loader, ArrowUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const EMAIL = 'bandasathvik0@gmail.com'
@@ -191,11 +191,48 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <div className="text-center mt-10 md:mt-16 pt-8 border-t border-white/5">
-        <p className="text-white/20 text-sm">
+      <footer className="mt-10 md:mt-16 pt-8 border-t border-white/5">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <p className="font-heading font-bold text-white text-sm">
+              Sathvik <span className="text-cyan-400">Banda</span>
+            </p>
+            <p className="text-white/30 text-xs mt-0.5">AI & ML Engineer · Open to opportunities</p>
+          </div>
+
+          <nav className="flex flex-wrap items-center justify-center gap-5 text-xs text-white/40">
+            {['#about','#skills','#projects','#certificates','#contact'].map(href => (
+              <a key={href} href={href} className="hover:text-cyan-400 transition-colors capitalize">
+                {href.slice(1)}
+              </a>
+            ))}
+            <Link to="/resume" className="hover:text-cyan-400 transition-colors">Resume</Link>
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <a href="https://github.com/Sathvik0728" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-white/30 hover:text-cyan-400 transition-colors">
+              <Github size={16} />
+            </a>
+            <a href="https://www.linkedin.com/in/banda-sathvik/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white/30 hover:text-cyan-400 transition-colors">
+              <Linkedin size={16} />
+            </a>
+            <a href={`mailto:${EMAIL}`} aria-label="Email" className="text-white/30 hover:text-cyan-400 transition-colors">
+              <Mail size={16} />
+            </a>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Back to top"
+              className="text-white/30 hover:text-cyan-400 transition-colors ml-2"
+            >
+              <ArrowUp size={16} />
+            </button>
+          </div>
+        </div>
+        <p className="text-center text-white/15 text-xs mt-6">
           Designed & built by Sathvik Banda · {new Date().getFullYear()}
         </p>
-      </div>
+      </footer>
     </section>
   )
 }
