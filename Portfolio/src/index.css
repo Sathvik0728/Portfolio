@@ -31,6 +31,15 @@
   }
 }
 
+@keyframes ticker {
+  from { translate: 0 0; }
+  to   { translate: -50% 0; }
+}
+
+.ticker-track {
+  animation: ticker 28s linear infinite;
+}
+
 @layer components {
   .glass-card {
     @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl;
