@@ -193,6 +193,7 @@ export const projects: Project[] = [
     longDesc: 'Best of 3/5/Infinite game modes with an AI opponent. Features a cyberpunk visual theme with glassmorphism card design, score tracking, and responsive gameplay. Deployed on Render.',
     category: 'Games & Utilities',
     tags: ['Flask', 'JavaScript', 'CSS3'],
+    github: 'https://github.com/Sathvik0728/Rock-Paper-Scissors',
     live: 'https://rock-paper-scissors-b2t8.onrender.com',
     featured: false,
   },
@@ -203,6 +204,7 @@ export const projects: Project[] = [
     longDesc: 'Minimal Python utility using the qrcode library to generate customizable QR codes from text or URL input, exported as high-quality PNG images.',
     category: 'Games & Utilities',
     tags: ['Python', 'qrcode'],
+    github: 'https://github.com/Sathvik0728/QR-Code-Generator',
     featured: false,
   },
   {
@@ -232,6 +234,7 @@ export const projects: Project[] = [
     longDesc: 'Faithful Snake implementation with start screen, game-over detection, score display, speed scaling as the snake grows, and collision detection.',
     category: 'Games & Utilities',
     tags: ['Python', 'Pygame'],
+    github: 'https://github.com/Sathvik0728/Snake-Game',
     featured: false,
   },
 ]
