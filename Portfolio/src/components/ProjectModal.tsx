@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X, Github } from 'lucide-react'
+import { X, Github, ExternalLink } from 'lucide-react'
 import type { Project } from '../data/projects'
 
 const categoryColors: Record<string, string> = {
@@ -91,6 +91,16 @@ export default function ProjectModal({ project, onClose }: Props) {
                   className="btn-outline text-sm py-2 px-4 flex items-center gap-2"
                 >
                   <Github size={14} /> GitHub
+                </a>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary text-sm py-2 px-4 flex items-center gap-2"
+                >
+                  <ExternalLink size={14} /> Live Demo
                 </a>
               )}
             </div>
