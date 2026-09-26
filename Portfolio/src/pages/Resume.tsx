@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Printer, ArrowLeft, Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
 import Navbar from '../components/Navbar'
@@ -26,11 +26,60 @@ const certs = resumeCertOrder
   .map(c => ({ title: c.title, issuer: c.issuer, url: `${CERT_BASE}/${encodeURIComponent(c.filename)}` }))
 
 export default function Resume() {
+  const printRef = useRef<HTMLDivElement>(null)
+  const [downloading, setDownloading] = useState(false)
+
   useEffect(() => {
     const prev = document.title
     document.title = 'Resume — Sathvik Banda'
     return () => { document.title = prev }
   }, [])
+
+  const handleDownload = async () => {
+    if (!printRef.current || downloading) return
+    setDownloading(true)
+    try {
+      const [{ default: html2canvas }, jspdfModule] = await Promise.all([
+        import('html2canvas'),
+        import('jspdf'),
+      ])
+      const jsPDF = jspdfModule.jsPDF ?? jspdfModule.default
+
+      const canvas = await html2canvas(printRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+      })
+
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const pageWidth = pdf.internal.pageSize.getWidth()
+      const pageHeight = pdf.internal.pageSize.getHeight()
+      const imgWidth = pageWidth
+      const imgHeight = (canvas.height * imgWidth) / canvas.width
+
+      const imgData = canvas.toDataURL('image/png')
+
+      let heightLeft = imgHeight
+      let position = 0
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+      heightLeft -= pageHeight
+
+      while (heightLeft > 0) {
+        position -= pageHeight
+        pdf.addPage()
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+        heightLeft -= pageHeight
+      }
+
+      pdf.save('Sathvik_Banda_Resume.pdf')
+    } catch (err) {
+      console.error('PDF generation failed', err)
+      window.print()
+    } finally {
+      setDownloading(false)
+    }
+  }
 
   return (
     <>
@@ -42,10 +91,11 @@ export default function Resume() {
         </Link>
         <button
           type="button"
-          onClick={() => window.print()}
-          className="btn-primary flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3.5 sm:px-6 py-2 sm:py-2.5 whitespace-nowrap"
+          onClick={handleDownload}
+          disabled={downloading}
+          className="btn-primary flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3.5 sm:px-6 py-2 sm:py-2.5 whitespace-nowrap disabled:opacity-60"
         >
-          <Printer size={14} className="shrink-0" /> <span className="hidden sm:inline">Print / Save PDF</span><span className="sm:hidden">Print</span>
+          <Printer size={14} className="shrink-0" /> {downloading ? 'Generating…' : 'Download PDF'}
         </button>
       </div>
 
@@ -185,7 +235,7 @@ export default function Resume() {
           </div>
 
           {/* === PRINT VIEW === */}
-          <div className="hidden print:block">
+          <div className="no-print-hide fixed left-0 top-0 -z-50 opacity-0 pointer-events-none print:static print:z-auto print:opacity-100 print:pointer-events-auto" aria-hidden="true">
             <style>{`
               @media print {
                 @page { size: A4; margin: 14mm 17mm; }
@@ -194,11 +244,17 @@ export default function Resume() {
                 nav, .no-print { display: none !important; }
                 main { padding: 0 !important; }
               }
+              .no-print-hide { width: 210mm; }
               .print-resume {
                 font-family: 'Calibri', 'Arial', sans-serif;
                 font-size: 11.5pt;
                 color: #111;
                 line-height: 1.6;
+                background: #ffffff;
+                padding: 14mm 17mm;
+              }
+              @media print {
+                .print-resume { padding: 0; }
               }
               .print-resume h1 { font-size: 25pt; font-weight: 700; color: #0a0a0a; margin: 0 0 4px 0; letter-spacing: -0.3px; }
               .print-resume .subtitle { font-size: 12.5pt; color: #444; margin-bottom: 7px; }
@@ -221,7 +277,7 @@ export default function Resume() {
               .print-resume a { color: inherit; text-decoration: none; }
             `}</style>
 
-            <div className="print-resume">
+            <div className="print-resume" ref={printRef}>
               <h1>Sathvik Banda</h1>
               <p className="subtitle">AI &amp; ML Engineer</p>
               <div className="contact-row">
