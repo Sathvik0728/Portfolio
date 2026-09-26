@@ -150,8 +150,8 @@ export default function Resume() {
                   <h3 className="text-white font-semibold text-sm">B.Tech — Computer Science &amp; Engineering (AI &amp; ML)</h3>
                   <p className="text-white/40 text-sm mt-0.5">Malla Reddy College of Engineering And Technology</p>
                 </div>
-                <div className="flex flex-col items-start sm:items-end gap-1 shrink-0">
-                  <span className="tag self-start sm:self-end">2023 – 2027</span>
+                <div className="flex flex-col items-center gap-1 shrink-0">
+                  <span className="tag">2023 – 2027</span>
                   <p className="text-cyan-400 text-sm font-medium">CGPA: 7.66</p>
                 </div>
               </div>
@@ -296,7 +296,7 @@ export default function Resume() {
                   <p className="edu-name">B.Tech — Computer Science &amp; Engineering (AI &amp; ML)</p>
                   <p className="edu-college">Malla Reddy College of Engineering And Technology</p>
                 </div>
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: 'center' }}>
                   <span className="edu-date">2023 – 2027</span>
                   <p className="edu-date" style={{ marginTop: 2 }}>CGPA: 7.66</p>
                 </div>
