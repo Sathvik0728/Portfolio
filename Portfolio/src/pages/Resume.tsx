@@ -36,20 +36,20 @@ export default function Resume() {
     <>
       <Navbar />
 
-      <div className="no-print fixed bottom-8 right-8 z-50 flex gap-3">
-        <Link to="/" className="btn-outline flex items-center gap-2 text-sm py-2.5">
-          <ArrowLeft size={15} /> Back
+      <div className="no-print fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex gap-2 sm:gap-3">
+        <Link to="/" className="btn-outline flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3.5 sm:px-6 py-2 sm:py-2.5 whitespace-nowrap">
+          <ArrowLeft size={14} className="shrink-0" /> Back
         </Link>
         <button
           type="button"
           onClick={() => window.print()}
-          className="btn-primary flex items-center gap-2 text-sm py-2.5"
+          className="btn-primary flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3.5 sm:px-6 py-2 sm:py-2.5 whitespace-nowrap"
         >
-          <Printer size={15} /> Print / Save PDF
+          <Printer size={14} className="shrink-0" /> <span className="hidden sm:inline">Print / Save PDF</span><span className="sm:hidden">Print</span>
         </button>
       </div>
 
-      <main className="min-h-screen pt-24 pb-24 px-6 print:pt-0 print:pb-0 print:px-0">
+      <main className="min-h-screen pt-24 pb-28 sm:pb-24 px-4 sm:px-6 print:pt-0 print:pb-0 print:px-0">
         <div className="max-w-4xl mx-auto">
 
           {/* === WEB VIEW === */}
@@ -69,15 +69,15 @@ export default function Resume() {
                   <p className="text-white/40 text-sm mb-4 max-w-xl">
                     Final-year B.Tech student building intelligent systems — from real-time gesture control to deployed ML web apps.
                   </p>
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-white/50">
-                    <a href="mailto:bandasathvik0@gmail.com" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
-                      <Mail size={13} /> bandasathvik0@gmail.com
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 text-xs sm:text-sm text-white/50">
+                    <a href="mailto:bandasathvik0@gmail.com" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors break-all">
+                      <Mail size={13} className="shrink-0" /> bandasathvik0@gmail.com
                     </a>
                     <a href="https://github.com/Sathvik0728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
-                      <Github size={13} /> Sathvik0728
+                      <Github size={13} className="shrink-0" /> Sathvik0728
                     </a>
                     <a href="https://www.linkedin.com/in/banda-sathvik/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
-                      <Linkedin size={13} /> banda-sathvik
+                      <Linkedin size={13} className="shrink-0" /> banda-sathvik
                     </a>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function Resume() {
               </h2>
               <ul className="flex flex-col gap-2.5">
                 {certs.map(c => (
-                  <li key={c.title} className="flex items-start justify-between gap-4 text-sm">
+                  <li key={c.title} className="flex flex-col sm:flex-row items-start sm:justify-between gap-1 sm:gap-4 text-sm">
                     <span className="flex items-start gap-2">
                       <span className="text-cyan-400/70 mt-0.5 text-xs shrink-0">▸</span>
                       <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-white/70 font-medium hover:text-cyan-400 hover:underline transition-colors flex items-center gap-1">
@@ -177,7 +177,7 @@ export default function Resume() {
                         <ExternalLink size={10} className="shrink-0 opacity-60" />
                       </a>
                     </span>
-                    <span className="text-white/35 text-xs shrink-0 mt-0.5">{c.issuer}</span>
+                    <span className="text-white/35 text-xs shrink-0 mt-0.5 pl-5 sm:pl-0">{c.issuer}</span>
                   </li>
                 ))}
               </ul>
