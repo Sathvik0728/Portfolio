@@ -1,4 +1,4 @@
-import { Github, ExternalLink, Star } from 'lucide-react'
+import { Github, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
 import type { Project } from '../data/projects'
 
@@ -58,13 +58,6 @@ export default function ProjectCard({ project, index, inView, featured, onClick 
                   aria-label={`${project.title} GitHub repository`}
                   className="text-white/30 hover:text-white transition-colors focus:text-white focus:outline-none">
                   <Github size={15} />
-                </a>
-              )}
-              {project.live && (
-                <a href={project.live} target="_blank" rel="noopener noreferrer"
-                  aria-label={`${project.title} live demo`}
-                  className="text-white/30 hover:text-cyan-400 transition-colors focus:text-cyan-400 focus:outline-none">
-                  <ExternalLink size={15} />
                 </a>
               )}
             </div>
