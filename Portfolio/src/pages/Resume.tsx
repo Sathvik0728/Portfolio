@@ -6,7 +6,20 @@ import { projects } from '../data/projects'
 import { skills } from '../data/skills'
 import { certificates, CERT_BASE } from '../data/certificates'
 
-const resumeProjectTitles = ['Sign Language Detection', 'Face Emotion Recognition', 'Air Pollution Predictor', 'PoseAI Pro']
+const resumeProjectTitles = ['PoseAI Pro', 'Face Emotion Recognition']
+
+const resumeProjectPoints: Record<string, string[]> = {
+  'PoseAI Pro': [
+    'Built a real-time AI fitness app that counts squats and analyzes posture from a live webcam feed.',
+    'Used MediaPipe Pose landmarks to compute knee and hip angles and give instant posture-correction feedback.',
+    'Developed the interface in Streamlit with live video streaming over WebRTC for browser-based use.',
+  ],
+  'Face Emotion Recognition': [
+    'Trained a custom CNN on the FER2013 dataset to classify 7 emotions: happy, sad, angry, fear, disgust, surprise and neutral.',
+    'Integrated Haar cascade face detection with OpenCV to locate faces in a live webcam stream.',
+    'Runs predictions frame by frame in real time, overlaying the detected emotion on each face.',
+  ],
+}
 const topProjects = resumeProjectTitles
   .map(title => projects.find(p => p.title === title))
   .filter((p): p is (typeof projects)[number] => Boolean(p))
@@ -183,7 +196,7 @@ export default function Resume() {
                 <span className="w-1 h-4 bg-cyan-400 rounded-full" />
                 Key Projects
               </h2>
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid gap-3">
                 {topProjects.map(p => (
                   <div key={p.title} className="p-4 rounded-xl bg-white/[0.025] border border-white/[0.07] hover:border-cyan-500/20 hover:bg-white/[0.04] transition-all duration-200 group">
                     <div className="flex items-start justify-between gap-2 mb-1.5">
@@ -201,7 +214,9 @@ export default function Resume() {
                         </a>
                       )}
                     </div>
-                    <p className="text-white/45 text-xs leading-relaxed mb-2.5">{p.description}</p>
+                    <ul className="list-disc pl-4 space-y-1 text-white/45 text-xs leading-relaxed mb-2.5">
+                      {(resumeProjectPoints[p.title] ?? [p.description]).map(pt => <li key={pt}>{pt}</li>)}
+                    </ul>
                     <div className="flex flex-wrap gap-1">
                       {p.tags.slice(0, 4).map(t => <span key={t} className="tag text-[10px] py-0.5">{t}</span>)}
                     </div>
@@ -321,7 +336,9 @@ export default function Resume() {
                     <span className="project-title">{p.title}</span>
                   )}
                   <span className="project-tech">— {p.tags.join(', ')}</span>
-                  <p className="project-desc">{p.description}</p>
+                  <ul className="project-desc" style={{ listStyle: 'disc', paddingLeft: '16px' }}>
+                    {(resumeProjectPoints[p.title] ?? [p.description]).map(pt => <li key={pt}>{pt}</li>)}
+                  </ul>
                 </div>
               ))}
 
