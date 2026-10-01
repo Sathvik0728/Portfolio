@@ -69,18 +69,11 @@ export default function Resume() {
 
       const imgData = canvas.toDataURL('image/png')
 
-      let heightLeft = imgHeight
-      let position = 0
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-      heightLeft -= pageHeight
-
-      while (heightLeft > 0) {
-        position -= pageHeight
-        pdf.addPage()
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-        heightLeft -= pageHeight
-      }
+      // Always fit the resume onto exactly one A4 page
+      const scale = Math.min(1, pageHeight / imgHeight)
+      const w = imgWidth * scale
+      const h = imgHeight * scale
+      pdf.addImage(imgData, 'PNG', (pageWidth - w) / 2, 0, w, h)
 
       pdf.save('Sathvik_Banda_Resume.pdf')
     } catch (err) {
@@ -249,7 +242,7 @@ export default function Resume() {
           <div className="no-print-hide fixed left-0 top-0 -z-50 opacity-0 pointer-events-none print:static print:z-auto print:opacity-100 print:pointer-events-auto" aria-hidden="true">
             <style>{`
               @media print {
-                @page { size: A4; margin: 14mm 17mm; }
+                @page { size: A4; margin: 0; }
                 * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
                 body { background: white !important; }
                 nav, .no-print { display: none !important; }
@@ -260,27 +253,43 @@ export default function Resume() {
                 font-family: 'Calibri', 'Arial', sans-serif;
                 font-size: 11.5pt;
                 color: #111;
-                line-height: 1.6;
+                line-height: 1.5;
                 background: #ffffff;
-                padding: 14mm 17mm;
+                width: 210mm;
+                height: 297mm;
+                padding: 10mm;
+                box-sizing: border-box;
+                overflow: hidden;
               }
-              @media print {
-                .print-resume { padding: 0; }
+              .print-resume * { box-sizing: border-box; }
+              .print-resume p, .print-resume ul { margin: 0; }
+              .print-resume .frame {
+                height: 100%;
+                border: 1.5px solid #1a1a2e;
+                padding: 9mm 11mm;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
               }
+              .print-resume .header { text-align: center; }
+              .print-resume .rs { }
               .print-resume h1 { font-size: 25pt; font-weight: 700; color: #0a0a0a; margin: 0 0 4px 0; letter-spacing: -0.3px; }
-              .print-resume .subtitle { font-size: 12.5pt; color: #444; margin-bottom: 7px; }
-              .print-resume .contact-row { font-size: 10.5pt; color: #555; display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 11px; padding-bottom: 9px; border-bottom: 1.5px solid #1a1a2e; }
-              .print-resume .summary { font-size: 11pt; color: #333; line-height: 1.6; margin-bottom: 2px; }
-              .print-resume .section-heading { font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #1a1a2e; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin: 13px 0 7px 0; }
+              .print-resume .subtitle { font-size: 12.5pt; color: #444; margin-bottom: 6px; letter-spacing: 0.5px; }
+              .print-resume .contact-row { font-size: 10.5pt; color: #444; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; padding-bottom: 9px; border-bottom: 1.5px solid #1a1a2e; }
+              .print-resume .contact-row .sep { color: #aaa; }
+              .print-resume .summary { font-size: 11pt; color: #333; line-height: 1.55; text-align: justify; }
+              .print-resume .section-heading { font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #1a1a2e; border-bottom: 1px solid #1a1a2e; padding-bottom: 3px; margin: 0 0 7px 0; }
               .print-resume .edu-row { display: flex; justify-content: space-between; align-items: baseline; }
               .print-resume .edu-name { font-weight: 600; font-size: 11.5pt; }
               .print-resume .edu-college { color: #555; font-size: 10.5pt; }
               .print-resume .edu-date { font-size: 10.5pt; color: #555; }
-              .print-resume .skill-row { margin-bottom: 4px; font-size: 10.5pt; }
+              .print-resume .skill-row { margin-bottom: 3px; font-size: 10.5pt; }
               .print-resume .skill-label { font-weight: 700; color: #1a1a2e; }
+              .print-resume .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
               .print-resume .project-title { font-weight: 700; font-size: 11pt; color: #0a0a0a; }
-              .print-resume .project-tech { font-size: 9.5pt; color: #777; margin-left: 6px; }
-              .print-resume .project-desc { font-size: 10.5pt; color: #444; margin: 2px 0 7px 0; line-height: 1.45; }
+              .print-resume .project-tech { font-size: 9.5pt; color: #666; font-style: italic; text-align: right; }
+              .print-resume .project-desc { font-size: 10.5pt; color: #444; margin: 3px 0 8px 0; line-height: 1.45; list-style: disc; padding-left: 18px; }
+              .print-resume .project-desc li { margin-bottom: 2px; }
               .print-resume .cert-list { display: flex; flex-direction: column; gap: 4px; }
               .print-resume .cert-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
               .print-resume .cert-item { font-size: 10.5pt; color: #444; }
@@ -289,19 +298,28 @@ export default function Resume() {
             `}</style>
 
             <div className="print-resume" ref={printRef}>
+             <div className="frame">
+              <div className="header">
               <h1>Sathvik Banda</h1>
               <p className="subtitle">AI &amp; ML Engineer</p>
               <div className="contact-row">
                 <a href="mailto:bandasathvik0@gmail.com">bandasathvik0@gmail.com</a>
+                <span className="sep">|</span>
                 <a href="https://github.com/Sathvik0728" target="_blank" rel="noopener noreferrer">github.com/Sathvik0728</a>
+                <span className="sep">|</span>
                 <a href="https://www.linkedin.com/in/banda-sathvik/" target="_blank" rel="noopener noreferrer">linkedin.com/in/banda-sathvik</a>
               </div>
+              </div>
 
+              <div className="rs">
               <p className="section-heading">Summary</p>
               <p className="summary">
                 Final-year B.Tech student in Computer Science (AI &amp; ML) with hands-on experience building intelligent systems across computer vision, NLP, and web AI. Developed 22+ projects spanning real-time gesture control, deep learning classifiers, and deployed ML web applications. Passionate about turning complex AI research into interactive, real-world products.
               </p>
 
+              </div>
+
+              <div className="rs">
               <p className="section-heading">Education</p>
               <div className="edu-row">
                 <div>
@@ -314,6 +332,9 @@ export default function Resume() {
                 </div>
               </div>
 
+              </div>
+
+              <div className="rs">
               <p className="section-heading">Technical Skills</p>
               {Object.entries(skills).map(([cat, items]) => (
                 <p key={cat} className="skill-row">
@@ -322,23 +343,31 @@ export default function Resume() {
                 </p>
               ))}
 
+              </div>
+
+              <div className="rs">
               <p className="section-heading">Key Projects</p>
               {topProjects.map(p => (
                 <div key={p.title}>
-                  {p.github ? (
-                    <a href={p.github} target="_blank" rel="noopener noreferrer" className="project-title">
-                      {p.title} <ExternalLink size={10} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                    </a>
-                  ) : (
-                    <span className="project-title">{p.title}</span>
-                  )}
-                  <span className="project-tech">— {p.tags.join(', ')}</span>
-                  <ul className="project-desc" style={{ listStyle: 'disc', paddingLeft: '16px' }}>
+                  <div className="project-head">
+                    {p.github ? (
+                      <a href={p.github} target="_blank" rel="noopener noreferrer" className="project-title">
+                        {p.title} <ExternalLink size={10} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                      </a>
+                    ) : (
+                      <span className="project-title">{p.title}</span>
+                    )}
+                    <span className="project-tech">{p.tags.join(' · ')}</span>
+                  </div>
+                  <ul className="project-desc">
                     {(resumeProjectPoints[p.title] ?? [p.description]).map(pt => <li key={pt}>{pt}</li>)}
                   </ul>
                 </div>
               ))}
 
+              </div>
+
+              <div className="rs">
               <p className="section-heading">Certifications &amp; Achievements</p>
               <div className="cert-list">
                 {certs.map(c => (
@@ -348,6 +377,8 @@ export default function Resume() {
                   </div>
                 ))}
               </div>
+              </div>
+             </div>
             </div>
           </div>
 
