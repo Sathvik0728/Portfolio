@@ -6,13 +6,18 @@ import { projects } from '../data/projects'
 import { skills } from '../data/skills'
 import { certificates, CERT_BASE } from '../data/certificates'
 
-const resumeProjectTitles = ['Sign Language Detection', 'Face Emotion Recognition']
+const resumeProjectTitles = ['Sign Language Detection', 'Face Emotion Recognition', 'PoseAI Pro']
 
 const resumeProjectPoints: Record<string, string[]> = {
   'Sign Language Detection': [
     'Built a real-time sign language recognition system that detects hand signs from a live webcam feed.',
     'Used MediaPipe and cvzone hand tracking with OpenCV to extract hand landmarks and classify gestures.',
     'Added multi-backend camera support (DSHOW, MSMF, VFW) with automatic retries and robust error handling for reliable real-world use.',
+  ],
+  'PoseAI Pro': [
+    'Built a real-time AI fitness app that counts squats and analyzes posture from a live webcam feed.',
+    'Used MediaPipe Pose landmarks to compute knee angles and give instant posture-correction feedback.',
+    'Developed the interface in Streamlit with live video streaming over WebRTC for browser-based use.',
   ],
   'Face Emotion Recognition': [
     'Trained a custom CNN on the FER2013 dataset to classify 7 emotions: happy, sad, angry, fear, disgust, surprise and neutral.',
@@ -282,16 +287,16 @@ export default function Resume() {
               .print-resume .edu-name { font-weight: 600; font-size: 11.5pt; }
               .print-resume .edu-college { color: #555; font-size: 10.5pt; }
               .print-resume .edu-date { font-size: 10.5pt; color: #555; }
-              .print-resume .skill-row { margin-bottom: 3px; font-size: 10.5pt; }
+              .print-resume .skill-row { margin-bottom: 4px; font-size: 11pt; }
               .print-resume .skill-label { font-weight: 700; color: #1a1a2e; }
               .print-resume .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
               .print-resume .project-title { font-weight: 700; font-size: 11pt; color: #0a0a0a; }
               .print-resume .project-tech { font-size: 9.5pt; color: #666; font-style: italic; text-align: right; }
-              .print-resume .project-desc { font-size: 10.5pt; color: #444; margin: 3px 0 8px 0; line-height: 1.45; list-style: disc; padding-left: 18px; }
+              .print-resume .project-desc { font-size: 10.8pt; color: #444; margin: 3px 0 8px 0; line-height: 1.45; list-style: disc; padding-left: 18px; }
               .print-resume .project-desc li { margin-bottom: 2px; }
               .print-resume .cert-list { display: flex; flex-direction: column; gap: 4px; }
               .print-resume .cert-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-              .print-resume .cert-item { font-size: 10.5pt; color: #444; }
+              .print-resume .cert-item { font-size: 11pt; color: #444; }
               .print-resume .cert-issuer { font-size: 9.5pt; color: #777; white-space: nowrap; }
               .print-resume a { color: inherit; text-decoration: none; }
             `}</style>
