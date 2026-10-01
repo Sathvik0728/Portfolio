@@ -6,13 +6,13 @@ import { projects } from '../data/projects'
 import { skills } from '../data/skills'
 import { certificates, CERT_BASE } from '../data/certificates'
 
-const resumeProjectTitles = ['PoseAI Pro', 'Face Emotion Recognition']
+const resumeProjectTitles = ['Sign Language Detection', 'Face Emotion Recognition']
 
 const resumeProjectPoints: Record<string, string[]> = {
-  'PoseAI Pro': [
-    'Built a real-time AI fitness app that counts squats and analyzes posture from a live webcam feed.',
-    'Used MediaPipe Pose landmarks to compute knee and hip angles and give instant posture-correction feedback.',
-    'Developed the interface in Streamlit with live video streaming over WebRTC for browser-based use.',
+  'Sign Language Detection': [
+    'Built a real-time sign language recognition system that detects hand signs from a live webcam feed.',
+    'Used MediaPipe and cvzone hand tracking with OpenCV to extract hand landmarks and classify gestures.',
+    'Added multi-backend camera support (DSHOW, MSMF, VFW) with automatic retries and robust error handling for reliable real-world use.',
   ],
   'Face Emotion Recognition': [
     'Trained a custom CNN on the FER2013 dataset to classify 7 emotions: happy, sad, angry, fear, disgust, surprise and neutral.',
