@@ -265,8 +265,7 @@ export default function Resume() {
               .print-resume p, .print-resume ul { margin: 0; }
               .print-resume .frame {
                 height: 100%;
-                border: 1.5px solid #1a1a2e;
-                padding: 9mm 11mm;
+                padding: 4mm 7mm;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
