@@ -54,7 +54,6 @@ export default function Hero() {
           transition={{ duration: 0.4 }}
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 mb-3 md:mb-4"
         >
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           <span className="text-green-400 text-xs font-medium">Available for opportunities</span>
         </motion.div>
 

@@ -9,13 +9,6 @@ const categoryColors: Record<string, string> = {
   'Games & Utilities':'from-orange-500/20 to-yellow-500/20 border-orange-500/20',
 }
 
-const categoryDot: Record<string, string> = {
-  'Computer Vision':  'bg-cyan-400',
-  'Deep Learning':    'bg-purple-400',
-  'Web & NLP':        'bg-green-400',
-  'Games & Utilities':'bg-orange-400',
-}
-
 interface Props {
   project: Project
   index: number
@@ -26,7 +19,6 @@ interface Props {
 
 export default function ProjectCard({ project, index, inView, featured, onClick }: Props) {
   const gradientClass = categoryColors[project.category] ?? 'from-white/5 to-white/5 border-white/10'
-  const dotClass = categoryDot[project.category] ?? 'bg-white/40'
 
   return (
     <motion.div
@@ -42,7 +34,6 @@ export default function ProjectCard({ project, index, inView, featured, onClick 
       <div className="p-6 flex flex-col flex-1">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
-            <span className={`w-2 h-2 rounded-full flex-shrink-0 ${dotClass}`} />
             <span className="text-xs text-white/50 font-mono">{project.category}</span>
           </div>
           <div className="flex items-center gap-2">
