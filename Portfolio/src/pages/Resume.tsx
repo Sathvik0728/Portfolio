@@ -351,7 +351,7 @@ export default function Resume() {
                   <div className="project-head">
                     {p.github ? (
                       <a href={p.github} target="_blank" rel="noopener noreferrer" className="project-title">
-                        {p.title} <ExternalLink size={10} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                        {p.title}
                       </a>
                     ) : (
                       <span className="project-title">{p.title}</span>
@@ -371,7 +371,7 @@ export default function Resume() {
               <div className="cert-list">
                 {certs.map(c => (
                   <div key={c.title} className="cert-row">
-                    <span className="cert-item">• <a href={c.url} target="_blank" rel="noopener noreferrer">{c.title} <ExternalLink size={9} style={{ display: 'inline', verticalAlign: 'middle' }} /></a></span>
+                    <span className="cert-item">• <a href={c.url} target="_blank" rel="noopener noreferrer">{c.title}</a></span>
                     <span className="cert-issuer">{c.issuer}</span>
                   </div>
                 ))}
