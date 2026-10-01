@@ -28,10 +28,7 @@ const resumeCertOrder = [
   'Fundamentals of Machine Learning and Artificial Intelligence',
   'Prompt Design in Vertex AI Skill Badge',
   'Fundamentals of Generative AI',
-  'Cyber Job Simulation',
   'SIH Internal Hackathon Certificate',
-  'AI Workshop Certificate',
-  'Data Visualisation',
 ]
 const certs = resumeCertOrder
   .map(title => certificates.find(c => c.title === title))
