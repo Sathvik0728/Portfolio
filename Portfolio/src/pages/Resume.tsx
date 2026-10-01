@@ -189,7 +189,7 @@ export default function Resume() {
             <div className="glass-card p-6 mb-5">
               <h2 className="font-heading text-base font-semibold text-white mb-4 flex items-center gap-2">
                 <span className="w-1 h-4 bg-cyan-400 rounded-full" />
-                Key Projects
+                Projects
               </h2>
               <div className="grid gap-3">
                 {topProjects.map(p => (
@@ -292,8 +292,9 @@ export default function Resume() {
               .print-resume .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
               .print-resume .project-title { font-weight: 700; font-size: 11pt; color: #0a0a0a; }
               .print-resume .project-tech { font-size: 9.5pt; color: #666; font-style: italic; text-align: right; }
-              .print-resume .project-desc { font-size: 10.8pt; color: #444; margin: 3px 0 8px 0; line-height: 1.45; list-style: disc; padding-left: 18px; }
-              .print-resume .project-desc li { margin-bottom: 2px; }
+              .print-resume .project-desc { font-size: 10.8pt; color: #444; margin: 3px 0 8px 0; line-height: 1.45; list-style: none; padding-left: 4px; }
+              .print-resume .project-desc li { display: flex; gap: 8px; margin-bottom: 2px; }
+              .print-resume .project-desc .dot { flex-shrink: 0; }
               .print-resume .cert-list { display: flex; flex-direction: column; gap: 4px; }
               .print-resume .cert-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
               .print-resume .cert-item { font-size: 11pt; color: #444; }
@@ -318,7 +319,7 @@ export default function Resume() {
               <div className="rs">
               <p className="section-heading">Summary</p>
               <p className="summary">
-                Final-year B.Tech student in Computer Science (AI &amp; ML) with hands-on experience building intelligent systems across computer vision, NLP, and web AI. Developed 22+ projects spanning real-time gesture control, deep learning classifiers, and deployed ML web applications. Passionate about turning complex AI research into interactive, real-world products.
+                Final-year B.Tech student in Computer Science (AI &amp; ML) with hands-on experience building intelligent systems across computer vision, NLP, and web AI. Developed multiple projects spanning real-time gesture control, deep learning classifiers, and deployed ML web applications. Passionate about turning complex AI research into interactive, real-world products.
               </p>
 
               </div>
@@ -343,14 +344,14 @@ export default function Resume() {
               {Object.entries(skills).map(([cat, items]) => (
                 <p key={cat} className="skill-row">
                   <span className="skill-label">{cat}: </span>
-                  <span>{items.join(' · ')}</span>
+                  <span>{items.join(', ')}</span>
                 </p>
               ))}
 
               </div>
 
               <div className="rs">
-              <p className="section-heading">Key Projects</p>
+              <p className="section-heading">Projects</p>
               {topProjects.map(p => (
                 <div key={p.title}>
                   <div className="project-head">
@@ -364,7 +365,7 @@ export default function Resume() {
                     <span className="project-tech">{p.tags.join(' · ')}</span>
                   </div>
                   <ul className="project-desc">
-                    {(resumeProjectPoints[p.title] ?? [p.description]).map(pt => <li key={pt}>{pt}</li>)}
+                    {(resumeProjectPoints[p.title] ?? [p.description]).map(pt => <li key={pt}><span className="dot">•</span><span>{pt}</span></li>)}
                   </ul>
                 </div>
               ))}
