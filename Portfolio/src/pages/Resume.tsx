@@ -270,12 +270,12 @@ export default function Resume() {
                 flex-direction: column;
                 justify-content: space-between;
               }
-              .print-resume .header { text-align: left; }
+              .print-resume .header { text-align: center; }
               .print-resume .rs { }
               .print-resume h1 { font-size: 25pt; font-weight: 700; color: #0a0a0a; margin: 0 0 4px 0; letter-spacing: -0.3px; }
               .print-resume .subtitle { font-size: 12.5pt; color: #444; margin-bottom: 6px; letter-spacing: 0.5px; }
-              .print-resume .contact-row { font-size: 10.5pt; color: #444; display: flex; justify-content: flex-start; gap: 22px; flex-wrap: wrap; padding-bottom: 9px; border-bottom: 1.5px solid #1a1a2e; }
-              .print-resume .contact-row .sep { display: none; }
+              .print-resume .contact-row { font-size: 10.5pt; color: #444; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; padding-bottom: 9px; border-bottom: 1.5px solid #1a1a2e; }
+              .print-resume .contact-row .sep { color: #aaa; }
               .print-resume .summary { font-size: 11pt; color: #333; line-height: 1.55; text-align: justify; }
               .print-resume .section-heading { font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #1a1a2e; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin: 0 0 8px 0; }
               .print-resume .edu-row { display: flex; justify-content: space-between; align-items: baseline; }
